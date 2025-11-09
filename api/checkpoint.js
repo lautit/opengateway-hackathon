@@ -2,7 +2,7 @@
  * ========================================
  * ORQUESTADOR CHECKPOINT (api/checkpoint.js)
  * ========================================
- * Compatible con Vercel Serverless (sin npm)
+ * Compatible con Vercel Serverlsess (sin npm)
  */
 
 // --- URLs Constantes (del Kit de Recursos PDF) ---
