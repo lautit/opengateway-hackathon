@@ -94,7 +94,7 @@ input[type="tel"]:focus {
 
 button {
     background-color: var(--primary-color);
-    color: white;
+    color: rgb(13, 0, 31);
     border: none;
     padding: 1rem 1.8rem;
     border-radius: 8px;
