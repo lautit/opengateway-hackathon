@@ -1,25 +1,21 @@
-import * as React from 'react'
-import { clsx } from 'clsx'
-import { twMerge } from 'tailwind-merge'
+import * as React from "react";
+import cn from "&/utils.ts";
 
-function cn(...inputs: any[]) {
-  return twMerge(clsx(inputs))
-}
-
-export interface LabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> {}
+export interface LabelProps
+  extends React.LabelHTMLAttributes<HTMLLabelElement> {}
 
 const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
   ({ className, ...props }, ref) => (
     <label
       ref={ref}
       className={cn(
-        'text-sm font-medium text-gray-300 leading-none',
-        className
+        "text-sm font-medium text-gray-300 leading-none",
+        className,
       )}
       {...props}
     />
-  )
-)
-Label.displayName = 'Label'
+  ),
+);
+Label.displayName = "Label";
 
-export { Label }
+export { Label };

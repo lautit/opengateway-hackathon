@@ -1,5 +1,8 @@
-import { usePhoneVerification } from './hooks/usePhoneVerification'
-import { PhoneInputForm, VerificationResult } from './components/phone-verification'
+import { usePhoneVerification } from "./hooks/usePhoneVerification";
+import {
+  PhoneInputForm,
+  VerificationResult,
+} from "./components/phone-verification";
 
 function App() {
   const {
@@ -13,12 +16,12 @@ function App() {
     setPhoneNumber,
     authenticate,
     reset,
-  } = usePhoneVerification()
+  } = usePhoneVerification();
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950">
       <div className="w-full max-w-md animate-fade-in">
-        {screen === 'input' ? (
+        {screen === "input" ? (
           <PhoneInputForm
             countryCode={countryCode}
             phoneNumber={phoneNumber}
@@ -44,7 +47,7 @@ function App() {
         </footer>
       </div>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

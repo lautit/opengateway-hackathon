@@ -1,19 +1,25 @@
-import { Button } from '../ui/button'
-import { Input } from '../ui/input'
-import { Label } from '../ui/label'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card'
-import { CountrySelect } from '../ui/country-select'
-import { Phone, Shield, Loader2 } from 'lucide-react'
-import { COUNTRIES } from '../../services/PhoneVerificationService'
+import { Button } from "../ui/button";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "../ui/card";
+import { CountrySelect } from "../ui/country-select";
+import { Phone, Shield, Loader2 } from "lucide-react";
+import { COUNTRIES } from "../../services/PhoneVerificationService";
 
 interface PhoneInputFormProps {
-  countryCode: string
-  phoneNumber: string
-  isLoading: boolean
-  isValid: boolean
-  onCountryCodeChange: (code: string) => void
-  onPhoneNumberChange: (number: string) => void
-  onAuthenticate: () => void
+  countryCode: string;
+  phoneNumber: string;
+  isLoading: boolean;
+  isValid: boolean;
+  onCountryCodeChange: (code: string) => void;
+  onPhoneNumberChange: (number: string) => void;
+  onAuthenticate: () => void;
 }
 
 export function PhoneInputForm({
@@ -26,10 +32,10 @@ export function PhoneInputForm({
   onAuthenticate,
 }: PhoneInputFormProps) {
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter' && isValid && !isLoading) {
-      onAuthenticate()
+    if (e.key === "Enter" && isValid && !isLoading) {
+      onAuthenticate();
     }
-  }
+  };
 
   return (
     <Card className="glass-effect border-white/10">
@@ -72,7 +78,7 @@ export function PhoneInputForm({
                 value={phoneNumber}
                 onChange={(e) => onPhoneNumberChange(e.target.value)}
                 onKeyDown={handleKeyDown}
-                className={`pr-10 ${isValid && phoneNumber ? 'border-green-500 ring-green-500/20' : ''}`}
+                className={`pr-10 ${isValid && phoneNumber ? "border-green-500 ring-green-500/20" : ""}`}
                 aria-label="Número de teléfono"
                 disabled={isLoading}
               />
@@ -93,8 +99,12 @@ export function PhoneInputForm({
             className="mt-0.5 accent-primary"
             aria-label="Consentimiento de validación"
           />
-          <label htmlFor="consent" className="text-xs text-gray-400 leading-relaxed">
-            Al continuar, aceptás la validación de tu dispositivo y línea para garantizar tu seguridad.
+          <label
+            htmlFor="consent"
+            className="text-xs text-gray-400 leading-relaxed"
+          >
+            Al continuar, aceptás la validación de tu dispositivo y línea para
+            garantizar tu seguridad.
           </label>
         </div>
 
@@ -110,7 +120,7 @@ export function PhoneInputForm({
               Autenticando...
             </>
           ) : (
-            'Autenticar de forma segura'
+            "Autenticar de forma segura"
           )}
         </Button>
 
@@ -119,5 +129,5 @@ export function PhoneInputForm({
         </p>
       </CardContent>
     </Card>
-  )
+  );
 }

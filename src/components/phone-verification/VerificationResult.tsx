@@ -1,14 +1,20 @@
-import { Button } from '../ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card'
-import { CheckCircle2, AlertCircle } from 'lucide-react'
-import { VerificationResult as VerificationResultType } from '../../services/PhoneVerificationService'
-import { PhoneVerificationService } from '../../services/PhoneVerificationService'
+import { Button } from "../ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "../ui/card";
+import { CheckCircle2, AlertCircle } from "lucide-react";
+import { VerificationResult as VerificationResultType } from "../../services/PhoneVerificationService";
+import { PhoneVerificationService } from "../../services/PhoneVerificationService";
 
 interface VerificationResultProps {
-  result: VerificationResultType
-  phoneNumber: string
-  countryCode: string
-  onReset: () => void
+  result: VerificationResultType;
+  phoneNumber: string;
+  countryCode: string;
+  onReset: () => void;
 }
 
 export function VerificationResult({
@@ -19,95 +25,99 @@ export function VerificationResult({
 }: VerificationResultProps) {
   const getCardBorderClass = () => {
     switch (result.type) {
-      case 'success':
-        return 'border-green-500/30'
-      case 'warning':
-        return 'border-yellow-500/30'
-      case 'danger':
-        return 'border-red-500/30'
+      case "success":
+        return "border-green-500/30";
+      case "warning":
+        return "border-yellow-500/30";
+      case "danger":
+        return "border-red-500/30";
       default:
-        return 'border-white/10'
+        return "border-white/10";
     }
-  }
+  };
 
   const getIconBackgroundClass = () => {
     switch (result.type) {
-      case 'success':
-        return 'bg-green-500/10'
-      case 'warning':
-        return 'bg-yellow-500/10'
-      case 'danger':
-        return 'bg-red-500/10'
+      case "success":
+        return "bg-green-500/10";
+      case "warning":
+        return "bg-yellow-500/10";
+      case "danger":
+        return "bg-red-500/10";
       default:
-        return 'bg-primary/10'
+        return "bg-primary/10";
     }
-  }
+  };
 
   const getIconColorClass = () => {
     switch (result.type) {
-      case 'success':
-        return 'text-green-500'
-      case 'warning':
-        return 'text-yellow-500'
-      case 'danger':
-        return 'text-red-500'
+      case "success":
+        return "text-green-500";
+      case "warning":
+        return "text-yellow-500";
+      case "danger":
+        return "text-red-500";
       default:
-        return 'text-primary'
+        return "text-primary";
     }
-  }
+  };
 
   const getScoreColorClass = () => {
     switch (result.type) {
-      case 'success':
-        return 'text-green-500'
-      case 'warning':
-        return 'text-yellow-500'
-      case 'danger':
-        return 'text-red-500'
+      case "success":
+        return "text-green-500";
+      case "warning":
+        return "text-yellow-500";
+      case "danger":
+        return "text-red-500";
       default:
-        return 'text-white'
+        return "text-white";
     }
-  }
+  };
 
   const getProgressBarColorClass = () => {
     switch (result.type) {
-      case 'success':
-        return 'bg-green-500'
-      case 'warning':
-        return 'bg-yellow-500'
-      case 'danger':
-        return 'bg-red-500'
+      case "success":
+        return "bg-green-500";
+      case "warning":
+        return "bg-yellow-500";
+      case "danger":
+        return "bg-red-500";
       default:
-        return 'bg-primary'
+        return "bg-primary";
     }
-  }
+  };
 
   const getTitle = () => {
     switch (result.decision) {
-      case 'APROBADO':
-        return 'Verificación Exitosa'
-      case 'REVISIÓN':
-        return 'Verificación Pendiente'
-      case 'BLOQUEADO':
-        return 'Verificación Fallida'
+      case "APROBADO":
+        return "Verificación Exitosa";
+      case "REVISIÓN":
+        return "Verificación Pendiente";
+      case "BLOQUEADO":
+        return "Verificación Fallida";
       default:
-        return 'Resultado de Verificación'
+        return "Resultado de Verificación";
     }
-  }
+  };
 
   const getButtonVariant = () => {
-    return result.type === 'success' ? 'default' : 'outline'
-  }
+    return result.type === "success" ? "default" : "outline";
+  };
 
   const getButtonText = () => {
-    return result.type === 'success' ? 'Continuar' : 'Intentar nuevamente'
-  }
+    return result.type === "success" ? "Continuar" : "Intentar nuevamente";
+  };
 
   return (
-    <Card className={`glass-effect border-white/10 ${getCardBorderClass()} animate-scale-in`}>
+    <Card
+      className={`glass-effect border-white/10 ${getCardBorderClass()} animate-scale-in`}
+    >
       <CardHeader className="text-center space-y-4 pb-6">
-        <div className={`mx-auto w-20 h-20 rounded-full flex items-center justify-center animate-scale-in ${getIconBackgroundClass()}`}>
-          {result.type === 'success' ? (
+        <div
+          className={`mx-auto w-20 h-20 rounded-full flex items-center justify-center animate-scale-in ${getIconBackgroundClass()}`}
+        >
+          {result.type === "success" ? (
             <CheckCircle2 className={`w-10 h-10 ${getIconColorClass()}`} />
           ) : (
             <AlertCircle className={`w-10 h-10 ${getIconColorClass()}`} />
@@ -128,7 +138,10 @@ export function VerificationResult({
           <div className="flex justify-between items-center">
             <span className="text-sm text-gray-400">Número verificado</span>
             <span className="text-sm font-mono text-white">
-              {PhoneVerificationService.maskPhoneNumber(phoneNumber, countryCode)}
+              {PhoneVerificationService.maskPhoneNumber(
+                phoneNumber,
+                countryCode,
+              )}
             </span>
           </div>
           <div className="flex justify-between items-center">
@@ -163,5 +176,5 @@ export function VerificationResult({
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }

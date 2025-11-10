@@ -1,0 +1,9 @@
+# Ignore artifacts:
+build
+coverage
+
+# Ignore Cline
+.clinerules
+
+# Ignore IDE
+.idea
