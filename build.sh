@@ -16,6 +16,14 @@ echo '{
   "version": 3
 }' > "${OUTPUT_DIR}/config.json"
 
+echo '[
+  {
+    "src": "^/api/checkpoint$",
+    "methods": ["POST"],
+    "dest": "functions/api.func"
+  }
+]' > "${OUTPUT_DIR}/routes.json"
+
 #=============================================================================#
 # Create server function
 #=============================================================================#
