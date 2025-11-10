@@ -7,8 +7,8 @@ export default defineConfig({
   platform: "node",
   outDir: ".vercel/output/functions/api.func",
   alias: {
-    $: path.resolve(__dirname, "./endpoints"),
-    "&": path.resolve(__dirname, "./lib"),
+    $: path.resolve(import.meta.dirname, "./endpoints"),
+    "&": path.resolve(import.meta.dirname, "./lib"),
   },
   dts: {
     oxc: true,
