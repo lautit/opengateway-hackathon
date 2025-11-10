@@ -3,6 +3,10 @@ import callApi from "&/callApi.ts";
 import mockedCallApi from "&/mockedCallApi.ts";
 import getAccessToken from "&/getAccessToken.ts";
 
+export async function GET() {
+  return new Response('ok', { status: 200 });
+}
+
 export async function POST(
   request: VercelRequest
 ): Promise<VercelResponse | unknown> {
