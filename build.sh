@@ -35,13 +35,5 @@ mkdir -p "${INDEX_FUNCTION_DIR}"
 
 echo '{
   "runtime": "node",
-  "entrypoint": "checkpoint.mjs",
-  "envVarsInUse": [
-    "OPENXPAND_MOCKED_API",
-    "OPENXPAND_API_BASE_URL",
-    "OPENXPAND_TOKEN_URL",
-    "OPENGATEWAY_API_SCOPES",
-    "OPENGATEWAY_CLIENT_SECRET",
-    "OPENGATEWAY_CLIENT_ID"
-  ]
+  "entrypoint": "checkpoint.mjs"
 }' > "${INDEX_FUNCTION_DIR}/.vc-config.json"
