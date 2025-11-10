@@ -119,3 +119,5 @@ export default async function handler(
     });
   }
 }
+
+export { handler };
