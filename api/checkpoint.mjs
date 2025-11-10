@@ -28,25 +28,6 @@ async function callApi_default(route, body, accessToken) {
 }
 
 //#endregion
-//#region lib/mockedCallApi.ts
-async function mockedCallApi_default(route, body, _accessToken) {
-	const phoneNumberStr = body.phoneNumber.toString();
-	const endsWith = (suffix) => phoneNumberStr.endsWith(suffix);
-	if (route === "/sim-swap/v0/check") {
-		if (endsWith("111")) return { swapped: true };
-		return { swapped: false };
-	}
-	if (route === "/number-verification/v0/verify") {
-		if (endsWith("222")) return { devicePhoneNumberVerified: false };
-		return { devicePhoneNumberVerified: true };
-	}
-	if (route === "/device-status/v0/roaming") {
-		if (endsWith("333")) return { roaming: true };
-		return { roaming: false };
-	}
-}
-
-//#endregion
 //#region lib/getAccessToken.ts
 async function getAccessToken_default() {
 	if (!process.env.OPENGATEWAY_API_SCOPES) throw new Error("Invalid OPENGATEWAY_API_SCOPES environment variable");
@@ -79,7 +60,6 @@ async function getAccessToken_default() {
 //#endregion
 //#region endpoints/api/checkpoint.ts
 async function handler(request, response) {
-	const call = process.env.OPENXPAND_MOCKED_API ? mockedCallApi_default : callApi_default;
 	try {
 		const { numeroTelefono } = request.body;
 		if (!numeroTelefono) return response.status(400).json({ message: "Falta numeroTelefono" });
@@ -87,12 +67,12 @@ async function handler(request, response) {
 		const accessToken = await getAccessToken_default();
 		if (!accessToken) return response.status(403).json({ message: "No se pudo obtener el Access Token." });
 		const [simSwapResult, numVerifyResult, deviceStatusResult] = await Promise.all([
-			call("/sim-swap/v0/check", {
+			callApi_default("/sim-swap/v0/check", {
 				phoneNumber: numeroTelefono,
 				maxAge: 1
 			}, accessToken),
-			call("/number-verification/v0/verify", { phoneNumber: numeroTelefono }, accessToken),
-			call("/device-status/v0/roaming", { phoneNumber: numeroTelefono }, accessToken)
+			callApi_default("/number-verification/v0/verify", { phoneNumber: numeroTelefono }, accessToken),
+			callApi_default("/device-status/v0/roaming", { phoneNumber: numeroTelefono }, accessToken)
 		]);
 		console.log({
 			simSwapResult,

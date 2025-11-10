@@ -1,13 +1,13 @@
 import { VercelRequest, VercelResponse } from "@vercel/node";
 import callApi from "&/callApi.ts";
-import mockedCallApi from "&/mockedCallApi.ts";
+//import mockedCallApi from "&/mockedCallApi.ts";
 import getAccessToken from "&/getAccessToken.ts";
 
 export default async function handler(
   request: VercelRequest,
   response: VercelResponse,
 ): Promise<Response | unknown> {
-  const call = process.env.OPENXPAND_MOCKED_API ? mockedCallApi : callApi;
+  //const call = process.env.OPENXPAND_MOCKED_API ? mockedCallApi : callApi;
 
   try {
     // 1. Obtener datos del frontend y la credencial de Vercel
@@ -29,7 +29,7 @@ export default async function handler(
     const [simSwapResult, numVerifyResult, deviceStatusResult] =
       await Promise.all([
         // API 1: SIM Swap Check
-        call(
+        callApi(
           "/sim-swap/v0/check",
           {
             phoneNumber: numeroTelefono,
@@ -39,7 +39,7 @@ export default async function handler(
         ),
 
         // API 2: Number Verification
-        call(
+        callApi(
           "/number-verification/v0/verify",
           {
             phoneNumber: numeroTelefono,
@@ -48,7 +48,7 @@ export default async function handler(
         ),
 
         // API 3: Device Status (Roaming)
-        call(
+        callApi(
           "/device-status/v0/roaming",
           {
             phoneNumber: numeroTelefono,
