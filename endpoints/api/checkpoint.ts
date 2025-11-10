@@ -57,6 +57,8 @@ export default async function handler(
         ),
       ]);
 
+    console.log({simSwapResult, numVerifyResult, deviceStatusResult});
+
     // 4. Lógica de Scoring (Paso 3)
     let score = 0;
     let reasons = [];

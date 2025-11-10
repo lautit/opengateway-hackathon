@@ -94,6 +94,11 @@ async function handler(request, response) {
 			call("/number-verification/v0/verify", { phoneNumber: numeroTelefono }, accessToken),
 			call("/device-status/v0/roaming", { phoneNumber: numeroTelefono }, accessToken)
 		]);
+		console.log({
+			simSwapResult,
+			numVerifyResult,
+			deviceStatusResult
+		});
 		let score = 0;
 		let reasons = [];
 		if (simSwapResult.swapped !== true) if (!!simSwapResult.error || simSwapResult.error !== "UNKNOWN_NUMBER") score += 15;
