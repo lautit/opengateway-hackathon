@@ -3,11 +3,11 @@ import callApi from "&/callApi.ts";
 import mockedCallApi from "&/mockedCallApi.ts";
 import getAccessToken from "&/getAccessToken.ts";
 
-export async function GET(): Promise<Response> {
+async function GET(): Promise<Response> {
   return new Response('ok', { status: 200 });
 }
 
-export async function POST(
+async function POST(
   request: VercelRequest
 ): Promise<Response | unknown> {
   const call = process.env.OPENXPAND_MOCKED_API ? mockedCallApi : callApi;
@@ -120,3 +120,5 @@ export async function POST(
     }), { status: 500 });
   }
 }
+
+export { GET, POST };

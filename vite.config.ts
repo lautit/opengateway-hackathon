@@ -11,7 +11,7 @@ export default defineConfig({
     },
   },
   build: {
-    outDir: ".vercel/output/static",
+    outDir: "dist",
     assetsDir: "assets",
     sourcemap: false,
     emptyOutDir: true,
