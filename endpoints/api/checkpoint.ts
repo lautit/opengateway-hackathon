@@ -64,7 +64,7 @@ export default async function handler(
     // Regla 1: SIM Swap
     if (simSwapResult.swapped !== true) {
       // Si el número no existe, no podemos confiar
-      if (!simSwapResult.error || simSwapResult.error !== "UNKNOWN_NUMBER") {
+      if (!!simSwapResult.error || simSwapResult.error !== "UNKNOWN_NUMBER") {
         score += 10; // Penalidad baja
       } else {
         reasons.push("Riesgo: SIM desconocida.");
