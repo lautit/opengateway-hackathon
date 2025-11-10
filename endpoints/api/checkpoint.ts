@@ -3,7 +3,7 @@ import callApi from "&/callApi.ts";
 import mockedCallApi from "&/mockedCallApi.ts";
 import getAccessToken from "&/getAccessToken.ts";
 
-export default async function handler(
+export async function POST(
   request: VercelRequest,
   response: VercelResponse,
 ): Promise<VercelResponse | unknown> {
@@ -119,5 +119,3 @@ export default async function handler(
     });
   }
 }
-
-export { handler };
