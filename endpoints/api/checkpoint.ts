@@ -33,7 +33,7 @@ export default async function handler(
           "/sim-swap/v0/check",
           {
             phoneNumber: numeroTelefono,
-            maxAge: 1,
+            maxAge: 6,
           },
           accessToken,
         ),

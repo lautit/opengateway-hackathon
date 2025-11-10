@@ -13,7 +13,7 @@ async function callApi_default(route, body, accessToken) {
 		});
 		if (!response.ok) {
 			const errorData = await response.json();
-			console.warn(`API ${route} falló:`, errorData);
+			console.warn(`API ${route} no devolvio OK:`, errorData);
 			if (response.status === 404) return {
 				error: "UNKNOWN_NUMBER",
 				status: 404
@@ -69,7 +69,7 @@ async function handler(request, response) {
 		const [simSwapResult, numVerifyResult, deviceStatusResult] = await Promise.all([
 			callApi_default("/sim-swap/v0/check", {
 				phoneNumber: numeroTelefono,
-				maxAge: 1
+				maxAge: 6
 			}, accessToken),
 			callApi_default("/number-verification/v0/verify", { phoneNumber: numeroTelefono }, accessToken),
 			callApi_default("/device-status/v0/roaming", { device: { phoneNumber: numeroTelefono } }, accessToken)
@@ -81,12 +81,12 @@ async function handler(request, response) {
 		});
 		let score = 0;
 		let reasons = [];
-		if (simSwapResult.swapped !== true) if (!!simSwapResult.error || simSwapResult.error !== "UNKNOWN_NUMBER") score += 15;
+		if (simSwapResult?.swapped !== true) if (!!simSwapResult?.error || simSwapResult?.error !== "UNKNOWN_NUMBER") score += 15;
 		else reasons.push("Riesgo: SIM desconocida.");
 		else reasons.push("Fraude detectado: SIM Swap reciente.");
-		if (deviceStatusResult.roaming !== true) score += 25;
+		if (deviceStatusResult?.roaming !== true) score += 25;
 		else reasons.push("Riesgo: Dispositivo en roaming.");
-		if (numVerifyResult["devicePhone NumberVerified"] !== false) score += 60;
+		if (numVerifyResult?.devicePhoneNumberVerified !== false) score += 60;
 		else reasons.push("Riesgo: El número no coincide con el dispositivo.");
 		let decision, message, type;
 		if (score <= 10) {
