@@ -1,5 +1,5 @@
 {
-  "name": "checkpoint-backoffice",
+  "name": "checkpoint",
   "private": true,
   "version": "1.0.0",
   "type": "module",
@@ -14,7 +14,6 @@
   },
   "dependencies": {
     "@tailwindcss/postcss": "4.1.17",
-    "@vercel/functions": "3.3.0",
     "@vercel/node": "^5.5.5",
     "class-variance-authority": "0.7.0",
     "clsx": "2.1.1",
