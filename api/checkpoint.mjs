@@ -96,7 +96,7 @@ async function handler(request, response) {
 		]);
 		let score = 0;
 		let reasons = [];
-		if (simSwapResult.swapped !== true) if (simSwapResult.error !== "UNKNOWN_NUMBER") score += 10;
+		if (simSwapResult.swapped !== true) if (!simSwapResult.error || simSwapResult.error !== "UNKNOWN_NUMBER") score += 10;
 		else reasons.push("Riesgo: SIM desconocida.");
 		else reasons.push("Fraude detectado: SIM Swap reciente.");
 		if (numVerifyResult["devicePhone NumberVerified"] !== false) score += 60;
