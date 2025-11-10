@@ -12,11 +12,9 @@ INDEX_FUNCTION_DIR=${OUTPUT_DIR}/functions/api.func
 rm -rf "${OUTPUT_DIR}"
 mkdir -p "${OUTPUT_DIR}"
 
-echo '
-{
+echo '{
   "version": 3
-}
-' > "${OUTPUT_DIR}/config.json"
+}' > "${OUTPUT_DIR}/config.json"
 
 #=============================================================================#
 # Create server function
@@ -27,8 +25,7 @@ pnpm build
 
 mkdir -p "${INDEX_FUNCTION_DIR}"
 
-echo '
-{
+echo '{
   "runtime": "node",
   "entrypoint": "checkpoint.mjs",
   "envVarsInUse": [
@@ -39,5 +36,4 @@ echo '
     "OPENGATEWAY_CLIENT_SECRET",
     "OPENGATEWAY_CLIENT_ID"
   ]
-}
-' > "${INDEX_FUNCTION_DIR}/.vc-config.json"
+}' > "${INDEX_FUNCTION_DIR}/.vc-config.json"

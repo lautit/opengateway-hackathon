@@ -4,8 +4,7 @@ import mockedCallApi from "&/mockedCallApi.ts";
 import getAccessToken from "&/getAccessToken.ts";
 
 export async function POST(
-  request: VercelRequest,
-  response: VercelResponse,
+  request: VercelRequest
 ): Promise<VercelResponse | unknown> {
   const call = process.env.OPENXPAND_MOCKED_API ? mockedCallApi : callApi;
 
@@ -14,7 +13,7 @@ export async function POST(
     const { numeroTelefono } = request.body;
 
     if (!numeroTelefono) {
-      return response.status(400).json({ message: 'Falta "numeroTelefono".' });
+      return new Response("Falta numeroTelefono", { status: 400 });
     }
 
     console.log(`[Orquestador] Iniciando chequeo para: ${numeroTelefono}`);
@@ -22,9 +21,7 @@ export async function POST(
     // 2. Obtener el Access Token (Paso 1)
     const accessToken = await getAccessToken();
     if (!accessToken) {
-      return response
-        .status(500)
-        .json({ message: "No se pudo obtener el Access Token." });
+      return new Response("No se pudo obtener el Access Token.", { status: 500 });
     }
 
     // 3. Llamar a las 3 APIs en paralelo (Paso 2)
@@ -109,13 +106,13 @@ export async function POST(
     console.log(`[Orquestador] Decisión: ${decision} (Score: ${score})`);
 
     // 6. Devolver respuesta al frontend
-    response.status(200).json({ decision, score, message, type });
+    return new Response(JSON.stringify({ decision, score, message, type }), { status: 200 });
   } catch (error) {
     console.error("Error fatal en el handler:", (error as Error)?.message);
-    response.status(500).json({
+    return new Response(JSON.stringify({
       decision: "ERROR",
       type: "danger",
       message: "Error interno del servidor. Revisa los logs de Vercel.",
-    });
+    }), { status: 500 });
   }
 }
