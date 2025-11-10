@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "ci": "./build.sh",
-    "build": "tsc && pnpm run build:front && pnpm run build:back",
+    "build": "tsc && pnpm run build:front",
     "build:front": "vite build",
     "build:back": "tsdown",
     "preview": "vite preview",
