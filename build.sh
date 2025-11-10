@@ -6,7 +6,7 @@ OUTPUT_DIR=.vercel/output
 INDEX_FUNCTION_DIR=${OUTPUT_DIR}/functions/api.func
 
 #=============================================================================#
-# Set up
+# Set up project
 #=============================================================================#
 
 rm -rf "${OUTPUT_DIR}"
@@ -24,10 +24,10 @@ echo '[
 ]' > "${OUTPUT_DIR}/routes.json"
 
 #=============================================================================#
-# Build project
+# Create server function
 #=============================================================================#
 
-#pnpm install
+pnpm install
 pnpm run build:back
 pnpm run build:front
 
