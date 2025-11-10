@@ -22,7 +22,7 @@ export default async function handler(
     // 2. Obtener el Access Token (Paso 1)
     const accessToken = await getAccessToken();
     if (!accessToken) {
-      return response.status(400).json({ message: "No se pudo obtener el Access Token." });
+      return response.status(403).json({ message: "No se pudo obtener el Access Token." });
     }
 
     // 3. Llamar a las 3 APIs en paralelo (Paso 2)
@@ -107,10 +107,10 @@ export default async function handler(
     console.log(`[Orquestador] Decisión: ${decision} (Score: ${score})`);
 
     // 6. Devolver respuesta al frontend
-    return response.status(400).json({ decision, score, message, type });
+    return response.status(200).json({ decision, score, message, type });
   } catch (error) {
     console.error("Error fatal en el handler:", (error as Error)?.message);
-    return response.status(400).json({
+    return response.status(500).json({
       decision: "ERROR",
       type: "danger",
       message: "Error interno del servidor. Revisa los logs de Vercel.",

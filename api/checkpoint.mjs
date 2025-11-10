@@ -85,7 +85,7 @@ async function handler(request, response) {
 		if (!numeroTelefono) return response.status(400).json({ message: "Falta numeroTelefono" });
 		console.log(`[Orquestador] Iniciando chequeo para: ${numeroTelefono}`);
 		const accessToken = await getAccessToken_default();
-		if (!accessToken) return response.status(400).json({ message: "No se pudo obtener el Access Token." });
+		if (!accessToken) return response.status(403).json({ message: "No se pudo obtener el Access Token." });
 		const [simSwapResult, numVerifyResult, deviceStatusResult] = await Promise.all([
 			call("/sim-swap/v0/check", {
 				phoneNumber: numeroTelefono,
@@ -118,7 +118,7 @@ async function handler(request, response) {
 			type = "success";
 		}
 		console.log(`[Orquestador] Decisión: ${decision} (Score: ${score})`);
-		return response.status(400).json({
+		return response.status(200).json({
 			decision,
 			score,
 			message,
@@ -126,7 +126,7 @@ async function handler(request, response) {
 		});
 	} catch (error) {
 		console.error("Error fatal en el handler:", error?.message);
-		return response.status(400).json({
+		return response.status(500).json({
 			decision: "ERROR",
 			type: "danger",
 			message: "Error interno del servidor. Revisa los logs de Vercel."
