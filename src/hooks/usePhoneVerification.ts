@@ -26,7 +26,7 @@ export interface UsePhoneVerificationReturn {
 
 export function usePhoneVerification(): UsePhoneVerificationReturn {
   const [screen, setScreen] = useState<Screen>("input");
-  const [countryCode, setCountryCode] = useState("+54");
+  const [countryCode, setCountryCode] = useState("54");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState<VerificationResult>(

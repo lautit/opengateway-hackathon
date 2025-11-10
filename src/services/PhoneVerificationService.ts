@@ -1,11 +1,11 @@
 const VERCEL_BACK_URL = "https://checkpoint-lautits-projects.vercel.app/api/checkpoint";
 
 export const COUNTRIES = [
-  { code: "+54", flag: "🇦🇷", label: "Argentina" },
-  { code: "+1", flag: "🇺🇸", label: "Estados Unidos" },
-  { code: "+34", flag: "🇪🇸", label: "España" },
-  { code: "+52", flag: "🇲🇽", label: "México" },
-  { code: "+55", flag: "🇧🇷", label: "Brasil" },
+  { code: "54", flag: "🇦🇷", label: "Argentina" },
+  { code: "1", flag: "🇺🇸", label: "Estados Unidos" },
+  { code: "34", flag: "🇪🇸", label: "España" },
+  { code: "52", flag: "🇲🇽", label: "México" },
+  { code: "55", flag: "🇧🇷", label: "Brasil" },
 ];
 
 export type VerificationResult = {

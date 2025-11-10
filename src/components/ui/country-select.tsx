@@ -54,7 +54,7 @@ export function CountrySelect({
         {...props}
       >
         {showFlagInTrigger && <span className="text-xl">{selected.flag}</span>}
-        <span className="font-medium">{selected.code}</span>
+        <span className="font-medium">+{selected.code}</span>
         <svg
           className={cn(
             "ml-auto h-4 w-4 transition-transform",
@@ -93,7 +93,7 @@ export function CountrySelect({
                 )}
               >
                 <span className="text-xl">{c.flag}</span>
-                <span className="font-mono">{c.code}</span>
+                <span className="font-mono">+{c.code}</span>
                 {showLabelInDropdown && (
                   <span className="ml-auto text-xs text-gray-400 truncate">
                     {c.label}
