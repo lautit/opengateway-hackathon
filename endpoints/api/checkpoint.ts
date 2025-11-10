@@ -64,8 +64,8 @@ export default async function handler(
     let reasons = [];
 
     // Regla 1: SIM Swap
-    if (simSwapResult.swapped !== true) {
-      if (!!simSwapResult.error || simSwapResult.error !== "UNKNOWN_NUMBER") {
+    if (simSwapResult?.swapped !== true) {
+      if (!!simSwapResult?.error || simSwapResult?.error !== "UNKNOWN_NUMBER") {
         score += 15; // Penalidad baja
       } else {
         // Si el número no existe, no podemos confiar
@@ -77,14 +77,14 @@ export default async function handler(
     }
 
     // Regla 2: Roaming
-    if (deviceStatusResult.roaming !== true) {
+    if (deviceStatusResult?.roaming !== true) {
       score += 25; // Penalidad media
     } else {
       reasons.push("Riesgo: Dispositivo en roaming.");
     }
 
     // Regla 3: Number Verification
-    if (numVerifyResult["devicePhone NumberVerified"] !== false) {
+    if (numVerifyResult?.devicePhoneNumberVerified !== false) {
       score += 60; // Penalidad alta
     } else {
       reasons.push("Riesgo: El número no coincide con el dispositivo.");

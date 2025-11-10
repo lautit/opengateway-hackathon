@@ -23,7 +23,7 @@ export default async function (route: string, body: Body, accessToken: string) {
 
     if (!response.ok) {
       const errorData = await response.json();
-      console.warn(`API ${route} falló:`, errorData);
+      console.warn(`API ${route} no devolvio OK:`, errorData);
 
       // Si el número no existe, lo tratamos como "indefinido"
       if (response.status === 404) {
