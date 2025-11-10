@@ -63,31 +63,32 @@ export default async function handler(
     let score = 0;
     let reasons = [];
 
-    // Regla 1: SIM Swap
-    if (simSwapResult?.swapped !== true) {
-      if (!!simSwapResult?.error || simSwapResult?.error !== "UNKNOWN_NUMBER") {
-        score += 15; // Penalidad baja
-      } else {
+    // Regla 1: Roaming
+    if (deviceStatusResult?.roaming === true) {
+      reasons.push("Riesgo: Dispositivo en roaming.");
+    } else {
+      score += 25; // Penalidad media
+    }
+
+    // Regla 2: Number Verification
+    if (numVerifyResult?.devicePhoneNumberVerified === false) {
+      reasons.push("Riesgo: El número no coincide con el dispositivo.");
+    } else {
+      score += 60; // Penalidad alta
+    }
+
+    // Regla 3: SIM Swap
+    if (simSwapResult?.swapped === true) {
+      // Fraude casi seguro
+      score = 0;
+      reasons.push("Fraude detectado: SIM Swap reciente.");
+    } else {
+      if (simSwapResult?.error === "UNKNOWN_NUMBER") {
         // Si el número no existe, no podemos confiar
         reasons.push("Riesgo: SIM desconocida.");
+      } else {
+        score += 15; // Penalidad baja
       }
-    } else {
-      // Fraude casi seguro
-      reasons.push("Fraude detectado: SIM Swap reciente.");
-    }
-
-    // Regla 2: Roaming
-    if (deviceStatusResult?.roaming !== true) {
-      score += 25; // Penalidad media
-    } else {
-      reasons.push("Riesgo: Dispositivo en roaming.");
-    }
-
-    // Regla 3: Number Verification
-    if (numVerifyResult?.devicePhoneNumberVerified !== false) {
-      score += 60; // Penalidad alta
-    } else {
-      reasons.push("Riesgo: El número no coincide con el dispositivo.");
     }
 
     // 5. Decisión Final (Paso 4)
@@ -96,7 +97,7 @@ export default async function handler(
       decision = "BLOQUEADO";
       message = reasons.join(" ");
       type = "danger";
-    } else if (score < 80) {
+    } else if (score < 85) {
       decision = "REVISIÓN";
       message = "Verificación adicional. " + reasons.join(" ");
       type = "warning";
