@@ -89,7 +89,7 @@ async function handler(request, response) {
 		if (numVerifyResult?.devicePhoneNumberVerified !== false) score += 60;
 		else reasons.push("Riesgo: El número no coincide con el dispositivo.");
 		let decision, message, type;
-		if (score <= 10) {
+		if (score <= 15) {
 			decision = "BLOQUEADO";
 			message = reasons.join(" ");
 			type = "danger";

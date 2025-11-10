@@ -92,7 +92,7 @@ export default async function handler(
 
     // 5. Decisión Final (Paso 4)
     let decision, message, type;
-    if (score <= 10) {
+    if (score <= 15) {
       decision = "BLOQUEADO";
       message = reasons.join(" ");
       type = "danger";
