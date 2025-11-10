@@ -1,15 +1,15 @@
-import { VercelRequest, VercelResponse } from "@vercel/node";
+import { VercelRequest } from "@vercel/node";
 import callApi from "&/callApi.ts";
 import mockedCallApi from "&/mockedCallApi.ts";
 import getAccessToken from "&/getAccessToken.ts";
 
-export async function GET() {
+export async function GET(): Promise<Response> {
   return new Response('ok', { status: 200 });
 }
 
 export async function POST(
   request: VercelRequest
-): Promise<VercelResponse | unknown> {
+): Promise<Response | unknown> {
   const call = process.env.OPENXPAND_MOCKED_API ? mockedCallApi : callApi;
 
   try {
