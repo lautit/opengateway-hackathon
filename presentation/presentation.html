@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CheckPoint: Pricing Regional Autenticado</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link href="./styles.css" rel="stylesheet">
+    <style>
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .slides-wrapper {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            flex: 0 0 100%;
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-rows: 80px 1fr 40px;
+            padding: 32px;
+            gap: 24px;
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-weight: 700;
+            background: #000;
+            color: #fff;
+            box-sizing: border-box;
+        }
+
+        .slide.active {
+            display: grid;
+        }
+
+        .carousel-controls {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(144, 238, 17, 0.8);
+            color: black;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .nav-btn:hover {
+            background: rgba(144, 238, 17, 1);
+        }
+
+        .nav-btn:disabled {
+            background: rgba(144, 238, 17, 0.3);
+            cursor: not-allowed;
+        }
+
+        .slide-indicators {
+            display: flex;
+            gap: 8px;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .indicator.active {
+            background: #90ee11;
+        }
+
+        .slide-number {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(144, 238, 17, 0.8);
+            color: black;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-number">
+        <span id="current-slide">1</span> / <span id="total-slides">12</span>
+    </div>
+
+    <div class="carousel-container">
+        <div class="slides-wrapper" id="slides-wrapper">
+            <!-- Slide 1: Title -->
+            <div class="slide slide-title active" data-slide-type="title">
+                <div style="position: absolute; inset: 0px; background: radial-gradient(circle at 30% 20%, rgba(144, 238, 17, 0.1) 0%, transparent 50%), linear-gradient(135deg, rgba(144, 238, 17, 0.05) 0%, rgba(255, 68, 68, 0.05) 100%); z-index: 1;"></div>
+
+                <header class="slide-header" style="position: relative; z-index: 10;">
+                    <h1 class="text-5xl font-bold">
+                        🔒 <span class="brand-primary">CheckPoint</span>: Pricing Regional Autenticado
+                    </h1>
+                </header>
+
+                <main class="slide-content flex gap-6 h-full items-center" style="position: relative; z-index: 10;">
+                    <div class="flex-[3] bg-gradient-to-br from-gray-900 to-black text-white rounded-2xl p-8 shadow-2xl border-2 border-green-400 relative overflow-hidden">
+                        <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(144, 238, 17, 0.1) 0%, transparent 70%); z-index: 0;"></div>
+                        <div style="position: relative; z-index: 10;">
+                            <div class="text-6xl font-bold brand-primary mb-4">🎮</div>
+                            <h2 class="text-4xl font-bold mb-3">Juegos para todos</h2>
+                            <h2 class="text-4xl font-bold brand-primary">seguros para todos</h2>
+                        </div>
+                    </div>
+
+                    <div class="flex-1 space-y-4">
+                        <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg p-6 text-center border-l-4 border-green-400 shadow-lg">
+                            <div class="text-2xl font-bold brand-primary mb-2">⚡</div>
+                            <div class="text-lg font-bold">Powered by</div>
+                            <div class="text-sm mt-2 brand-primary">Open Gateway</div>
+                        </div>
+
+                        <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg p-6 text-center border-l-4 border-green-400 shadow-lg">
+                            <div class="text-2xl font-bold brand-primary mb-2">🌐</div>
+                            <div class="text-lg font-bold">GSMA</div>
+                            <div class="text-sm mt-2 brand-primary">Standards</div>
+                        </div>
+                    </div>
+                </main>
+
+                <footer class="slide-footer"></footer>
+            </div>
+
+            <!-- Slide 2: Timeline -->
+            <div class="slide slide-timeline" data-slide-type="timeline">
+                <header class="slide-header flex items-center justify-start">
+                    <h1 class="text-3xl font-bold text-white">Noviembre-Diciembre 2023: El mes que cambió todo</h1>
+                </header>
+
+                <main class="slide-content flex items-center gap-0 h-full py-8">
+                    <div class="flex-1 flex flex-col items-center">
+                        <div class="w-20 h-20 bg-green-400 rounded-full shadow-2xl flex items-center justify-center text-black font-bold text-lg">10</div>
+                        <div class="mt-3 text-center text-base font-bold brand-primary">NOV 10</div>
+                        <p class="mt-2 text-sm text-gray-300 text-center px-2">Steam anuncia cambio USD</p>
+                        <div class="mt-2 w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center"><span class="text-xs">💰</span></div>
+                    </div>
+
+                    <div class="flex-none w-16 h-1 bg-gradient-to-r from-green-400 to-red-500"></div>
+
+                    <div class="flex-1 flex flex-col items-center">
+                        <div class="w-20 h-20 bg-red-500 rounded-full shadow-2xl flex items-center justify-center text-white font-bold text-lg">20</div>
+                        <div class="mt-3 text-center text-base font-bold text-red-400">NOV 20</div>
+                        <p class="mt-2 text-sm text-gray-300 text-center px-2">Precios explotan 4300%</p>
+                        <div class="mt-2 w-8 h-8 rounded-full bg-red-700 flex items-center justify-center"><span class="text-xs">📈</span></div>
+                    </div>
+
+                    <div class="flex-none w-16 h-1 bg-gradient-to-r from-red-500 to-yellow-500"></div>
+
+                    <div class="flex-1 flex flex-col items-center">
+                        <div class="w-20 h-20 bg-yellow-500 rounded-full shadow-2xl flex items-center justify-center text-black font-bold text-lg">10</div>
+                        <div class="mt-3 text-center text-base font-bold text-yellow-400">DIC 10</div>
+                        <p class="mt-2 text-sm text-gray-300 text-center px-2">Cambio gobierno Argentina</p>
+                        <div class="mt-2 w-8 h-8 rounded-full bg-yellow-600 flex items-center justify-center"><span class="text-xs">🏛️</span></div>
+                    </div>
+
+                    <div class="flex-none w-16 h-1 bg-gradient-to-r from-yellow-500 to-gray-500"></div>
+
+                    <div class="flex-1 flex flex-col items-center">
+                        <div class="w-20 h-20 bg-gray-600 rounded-full shadow-2xl flex items-center justify-center text-white font-bold text-lg">✕</div>
+                        <div class="mt-3 text-center text-base font-bold text-gray-400">DESPUÉS</div>
+                        <p class="mt-2 text-sm text-gray-300 text-center px-2">Steam cerró antes del cambio económico</p>
+                        <div class="mt-2 w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center"><span class="text-xs">🔒</span></div>
+                    </div>
+                </main>
+
+                <footer class="slide-footer flex items-center justify-between text-xs text-gray-400">
+                    <span class="brand-primary font-bold">Timeline: 30 días críticos • Impacto: 4300% aumento • 5M gamers argentinos afectados</span>
+                </footer>
+            </div>
+
+            <!-- Slide 3: Comparison - Everyone Lost -->
+            <div class="slide slide-comparison" data-slide-type="comparison">
+                <header class="slide-header">
+                    <h1 class="text-3xl font-black text-white">Todos perdimos en 2023</h1>
+                </header>
+
+                <main class="slide-content">
+                    <div class="flex gap-6 h-full items-stretch">
+                        <div class="flex-[1] rounded-xl p-5" style="background: linear-gradient(135deg, #90ee11, #7dd60f); color: #000000;">
+                            <div class="h-full flex flex-col justify-between">
+                                <div>
+                                    <h3 class="text-xl font-black mb-3">👤 Matías (22 años)</h3>
+                                    <p class="text-sm font-bold mb-2">$400 salario mensual</p>
+                                    <p class="text-sm font-bold mb-2">Juegos $2→$15</p>
+                                    <p class="text-sm font-bold">Volvió a la piratería</p>
+                                </div>
+                                <div class="bg-black bg-opacity-20 rounded-lg p-3 mt-4">
+                                    <p class="text-xs font-black text-center">Salary Impact</p>
+                                    <p class="text-lg font-black text-center">$400 vs $15</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex-[2] rounded-2xl p-6 shadow-2xl" style="background: linear-gradient(135deg, #ff4444, #e03e3e); color: #ffffff;">
+                            <div class="h-full flex flex-col justify-between">
+                                <div>
+                                    <h3 class="text-3xl font-black mb-4 text-center">🍒 Team Cherry</h3>
+                                    <div class="space-y-3">
+                                        <p class="text-lg font-bold">30% ventas en Argentina</p>
+                                        <p class="text-lg font-bold">Solo 15% compras reales</p>
+                                        <p class="text-xl font-black text-center">Perdió $180K</p>
+                                    </div>
+                                </div>
+                                <div class="bg-black bg-opacity-30 rounded-xl p-4 mt-4">
+                                    <p class="text-sm font-black text-center mb-2">FRAUD RATE</p>
+                                    <p class="text-4xl font-black text-center">85%</p>
+                                    <p class="text-xs font-bold text-center">fake purchases</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex-[1] rounded-xl p-5" style="background: linear-gradient(135deg, #90ee11, #7dd60f); color: #000000;">
+                            <div class="h-full flex flex-col justify-between">
+                                <div>
+                                    <h3 class="text-xl font-black mb-3">⚡ Valve</h3>
+                                    <p class="text-sm font-bold mb-2">Cerró pricing regional</p>
+                                    <p class="text-sm font-bold">Perdió mercado legítimo</p>
+                                </div>
+                                <div class="bg-black bg-opacity-20 rounded-lg p-3 mt-4">
+                                    <p class="text-xs font-black text-center">Market Loss</p>
+                                    <p class="text-lg font-black text-center">5M users</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+
+                <footer class="slide-footer"></footer>
+            </div>
+
+            <!-- Slide 4: Geospoofing Process -->
+            <div class="slide slide-process_flow" data-slide-type="process_flow">
+                <header class="slide-header">
+                    <h1 class="text-3xl font-bold" style="color: #90ee11;">El enemigo invisible: Geospoofing</h1>
+                </header>
+
+                <main class="slide-content" style="position: relative; z-index: 10;">
+                    <div class="grid grid-cols-4 gap-4 h-full py-8">
+                        <div class="process-card rounded-xl shadow-lg p-5">
+                            <div class="text-3xl font-bold card-number mb-2">01</div>
+                            <h4 class="font-semibold mb-2 text-sm">Usuario USA</h4>
+                            <div class="text-xs mb-2">🔒 VPN Activa</div>
+                            <p class="text-xs">VPN → IP Buenos Aires</p>
+                        </div>
+
+                        <div class="process-card rounded-xl shadow-lg p-5">
+                            <div class="text-3xl font-bold card-number mb-2">02</div>
+                            <h4 class="font-semibold mb-2 text-sm">GPS Falso</h4>
+                            <div class="text-xs mb-2">📍 Fake Location</div>
+                            <p class="text-xs">Fake GPS → ubicación falsa</p>
+                        </div>
+
+                        <div class="process-card rounded-xl shadow-lg p-5">
+                            <div class="text-3xl font-bold card-number mb-2">03</div>
+                            <h4 class="font-semibold mb-2 text-sm">Pago Internacional</h4>
+                            <div class="text-xs mb-2">💳 Tarjeta OK</div>
+                            <p class="text-xs">Tarjeta internacional → pago OK</p>
+                        </div>
+
+                        <div class="process-card rounded-xl shadow-lg p-5">
+                            <div class="text-3xl font-bold card-number mb-2">04</div>
+                            <h4 class="font-semibold mb-2 text-sm">Steam Engañado</h4>
+                            <div class="text-xs mb-2">🎮 Precio AR</div>
+                            <p class="text-xs">Steam ve: Argentina válida, $6 vs $60 ahorro</p>
+                        </div>
+                    </div>
+
+                    <div class="stats-overlay">
+                        <div class="stat-item">
+                            <div class="stat-number">34%</div>
+                            <div>VPN usage global</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">60%</div>
+                            <div>Price abuse for costs</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">85%</div>
+                            <div>AR/TR fraud purchases</div>
+                        </div>
+                    </div>
+                </main>
+
+                <footer class="slide-footer"></footer>
+            </div>
+
+            <!-- Slide 5: Developer Reports -->
+            <div class="slide slide-case_study" data-slide-type="case_study">
+                <header class="slide-header flex items-center justify-start">
+                    <h1 class="text-3xl font-bold brand-primary">Developers reportaron el problema</h1>
+                </header>
+                <main class="slide-content flex gap-6 h-full items-center justify-center px-8">
+                    <div class="flex-1 bg-gray-900 border-4 border-red-500 rounded-2xl shadow-2xl p-6 transform -rotate-3 scale-105">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center mr-3">
+                                <span class="text-white font-bold text-xl">🧟</span>
+                            </div>
+                            <h3 class="font-bold text-lg text-white">Over 9000 Zombies</h3>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="bg-red-500 text-white rounded-lg p-3 text-center">
+                                <div class="text-4xl font-bold">95%</div>
+                                <div class="text-sm">Ventas imposibles</div>
+                            </div>
+                            <p class="text-gray-300 text-sm">Argentina literalmente imposible de alcanzar ese volumen</p>
+                        </div>
+                    </div>
+
+                    <div class="flex-1 bg-gray-800 border-4 border-green-400 rounded-2xl shadow-xl p-6 transform rotate-2 scale-100">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-green-400 rounded-lg flex items-center justify-center mr-3">
+                                <span class="text-black font-bold text-xl">⚔️</span>
+                            </div>
+                            <h3 class="font-bold text-lg text-white">Hero's Journey</h3>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="bg-green-400 text-black rounded-lg p-3 text-center">
+                                <div class="text-4xl font-bold">30%</div>
+                                <div class="text-sm">Revenue fraude</div>
+                            </div>
+                            <p class="text-gray-300 text-sm">Total era fraude AR/TR regiones</p>
+                        </div>
+                    </div>
+
+                    <div class="flex-1 bg-gray-700 border-4 border-orange-500 rounded-xl shadow-lg p-5 transform -rotate-1 scale-95">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center mr-3">
+                                <span class="text-white font-bold text-xl">🚢</span>
+                            </div>
+                            <h3 class="font-bold text-base text-white">Spiritfarer</h3>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="bg-orange-500 text-white rounded-lg p-3 text-center">
+                                <div class="text-3xl font-bold">85%</div>
+                                <div class="text-xs">VPN abuse</div>
+                            </div>
+                            <p class="text-gray-300 text-xs">15% legítimas, 85% VPN en AR/TR</p>
+                        </div>
+                    </div>
+                </main>
+            </div>
+
+            <!-- Slide 6: Revenue Opportunity -->
+            <div class="slide slide-data_metrics" data-slide-type="data_metrics">
+                <header class="slide-header flex items-center justify-start">
+                    <h1 class="text-3xl font-bold" style="color: #90ee11;">El revenue recuperable</h1>
+                </header>
+
+                <main class="slide-content">
+                    <div class="grid grid-cols-4 grid-rows-2 gap-4 h-full">
+                        <div class="col-span-2 row-span-2 rounded-2xl p-6 shadow-2xl" style="background: linear-gradient(135deg, #90ee11 0%, #a8f030 100%);">
+                            <div class="text-black">
+                                <h3 class="text-2xl font-bold mb-4">🎮 Stardew Valley</h3>
+                                <div class="space-y-3">
+                                    <div class="text-6xl font-black">1100%</div>
+                                    <div class="text-xl font-bold">$0.50 → $6</div>
+                                    <div class="text-lg">+$5.50 revenue</div>
+                                    <div class="mt-6 p-3 bg-black bg-opacity-20 rounded-xl">
+                                        <div class="text-sm font-semibold">Highest Growth Rate</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-span-2 rounded-xl shadow-lg p-5" style="background: linear-gradient(135deg, #ff4444 0%, #ff6666 100%);">
+                            <div class="text-white">
+                                <h4 class="font-bold text-lg mb-2">💰 Total Opportunity</h4>
+                                <div class="text-4xl font-bold">$350M-$525M</div>
+                                <div class="text-sm mt-2">per year potential</div>
+                            </div>
+                        </div>
+
+                        <div class="rounded-xl p-4 shadow-lg" style="background: linear-gradient(135deg, #2a2a2a 0%, #404040 100%);">
+                            <div class="text-center">
+                                <div class="text-2xl font-bold" style="color: #90ee11;">300%</div>
+                                <div class="text-sm font-semibold mt-1">Elden Ring</div>
+                                <div class="text-xs mt-1">$6 → $24 (+$18)</div>
+                            </div>
+                        </div>
+
+                        <div class="rounded-xl p-4 shadow-lg" style="background: linear-gradient(135deg, #2a2a2a 0%, #404040 100%);">
+                            <div class="text-center">
+                                <div class="text-2xl font-bold" style="color: #90ee11;">300%</div>
+                                <div class="text-sm font-semibold mt-1">Baldur's Gate 3</div>
+                                <div class="text-xs mt-1">$7 → $28 (+$21)</div>
+                            </div>
+                        </div>
+
+                        <div class="rounded-xl p-4 shadow-lg" style="background: linear-gradient(135deg, #2a2a2a 0%, #404040 100%);">
+                            <div class="text-center">
+                                <div class="text-2xl font-bold" style="color: #90ee11;">250%</div>
+                                <div class="text-sm font-semibold mt-1">Call of Duty</div>
+                                <div class="text-xs mt-1">$12 → $42 (+$30)</div>
+                            </div>
+                        </div>
+
+                        <div class="rounded-xl p-4 shadow-lg" style="background: linear-gradient(135deg, #404040 0%, #606060 100%);">
+                            <div class="text-center">
+                                <div class="text-xl font-bold" style="color: #ff4444;">$50-75</div>
+                                <div class="text-xs font-semibold mt-1">per user/year</div>
+                                <div class="text-xs mt-1">~7M users</div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+
+            <!-- Slide 7: CheckPoint Process -->
+            <div class="slide slide-process_flow" data-slide-type="process_flow">
+                <header class="slide-header flex items-center justify-start">
+                    <h1 class="text-3xl font-bold brand-primary">CheckPoint: Geopricing Autenticado</h1>
+                </header>
+
+                <main class="slide-content flex flex-col gap-4 h-full">
+                    <div class="grid grid-cols-4 gap-4 h-3/5 items-end">
+                        <div class="bg-gradient-to-br from-green-400 to-green-600 text-black rounded-xl p-4 shadow-2xl opacity-100 h-full flex flex-col justify-center">
+                            <div class="text-6xl mb-2 text-center">📱</div>
+                            <h3 class="font-bold text-lg mb-2 text-center">Usuario Ingresa</h3>
+                            <p class="text-sm text-center">+54 9 11 XXXX XXXX</p>
+                        </div>
+
+                        <div class="bg-gradient-to-br from-green-300 to-green-500 text-black rounded-xl p-4 shadow-lg opacity-90 h-full flex flex-col justify-center">
+                            <div class="text-5xl mb-2 text-center">📍</div>
+                            <h3 class="font-bold text-lg mb-2 text-center">Device Location</h3>
+                            <p class="text-sm text-center">Antena confirma Buenos Aires</p>
+                        </div>
+
+                        <div class="bg-gradient-to-br from-green-200 to-green-400 text-black rounded-xl p-4 shadow-md opacity-75 h-full flex flex-col justify-center">
+                            <div class="text-4xl mb-2 text-center">🔒</div>
+                            <h3 class="font-bold text-lg mb-2 text-center">SIM Swap</h3>
+                            <p class="text-sm text-center">Activa desde 2 años</p>
+                        </div>
+
+                        <div class="bg-gradient-to-br from-green-100 to-green-300 text-gray-700 rounded-xl p-4 shadow-sm opacity-60 h-full flex flex-col justify-center">
+                            <div class="text-3xl mb-2 text-center">⭐</div>
+                            <h3 class="font-bold text-lg mb-2 text-center">Score 95/100</h3>
+                            <p class="text-sm text-center">Elden Ring $24 USD</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-4 h-2/5">
+                        <div class="bg-gray-800 rounded-lg p-3 border-l-4 border-green-400 flex flex-col justify-center">
+                            <div class="text-2xl font-bold brand-primary-text mb-1">2s</div>
+                            <div class="text-sm brand-text">Validation Time</div>
+                        </div>
+
+                        <div class="bg-gray-800 rounded-lg p-3 border-l-4 border-green-400 flex flex-col justify-center">
+                            <div class="text-2xl font-bold brand-primary-text mb-1">0-100</div>
+                            <div class="text-sm brand-text">Score Range</div>
+                        </div>
+
+                        <div class="bg-gray-800 rounded-lg p-3 border-l-4 border-green-400 flex flex-col justify-center">
+                            <div class="text-lg font-bold brand-primary-text mb-1">$24 vs $60 vs $6</div>
+                            <div class="text-sm brand-text">Price Comparison</div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+
+            <!-- Slide 8: Impossible to Fake -->
+            <div class="slide slide-comparison" data-slide-type="comparison">
+                <header class="slide-header">
+                    <h1 class="text-3xl font-bold" style="color: #90ee11;">Imposible de falsificar</h1>
+                </header>
+                <main class="slide-content">
+                    <div class="flex h-full gap-1">
+                        <div class="flex-[7] rounded-l-xl p-6" style="background: linear-gradient(135deg, #90ee11 0%, #7dd60f 100%); color: #000000;">
+                            <h3 class="text-2xl font-bold mb-4">CheckPoint (Open Gateway)</h3>
+                            <div class="space-y-4">
+                                <div class="bg-black bg-opacity-10 rounded-lg p-4">
+                                    <div class="text-4xl font-bold mb-2">$0.05</div>
+                                    <div class="text-lg">Costo por validación</div>
+                                </div>
+                                <div class="bg-black bg-opacity-10 rounded-lg p-4">
+                                    <div class="text-4xl font-bold mb-2">2 seg</div>
+                                    <div class="text-lg">Velocidad de verificación</div>
+                                </div>
+                                <div class="bg-black bg-opacity-10 rounded-lg p-4">
+                                    <div class="text-lg font-bold">✓ Imposible escalar ataques</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-1 bg-gradient-to-b from-red-400 via-red-500 to-red-400"></div>
+                        <div class="flex-[3] rounded-r-xl p-4" style="background: linear-gradient(135deg, #ff4444 0%, #ff6666 100%); color: #ffffff;">
+                            <h4 class="font-bold mb-3 text-lg">Para falsificar necesitas:</h4>
+                            <div class="space-y-3 text-sm">
+                                <div class="bg-white bg-opacity-20 rounded p-3">
+                                    <div class="font-semibold">🔒 Hackear infraestructura</div>
+                                    <div class="text-xs mt-1">del operador móvil</div>
+                                </div>
+                                <div class="bg-white bg-opacity-20 rounded p-3">
+                                    <div class="font-semibold">📱 Comprar SIM local</div>
+                                    <div class="text-xs mt-1">en cada país</div>
+                                </div>
+                                <div class="bg-white bg-opacity-20 rounded p-3">
+                                    <div class="font-semibold">🏠 Vivir en el país</div>
+                                    <div class="text-xs mt-1">por meses</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+
+            <!-- Slide 9: Why It Matters -->
+            <div class="slide slide-key_insights" data-slide-type="key_insights">
+                <header class="slide-header flex items-center justify-start">
+                    <h1 class="text-3xl font-bold text-white">Más que números: Por qué esto importa</h1>
+                </header>
+
+                <main class="slide-content relative h-full">
+                    <div class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 rounded-full shadow-2xl flex items-center justify-center text-center p-6 z-20" style="background: linear-gradient(135deg, rgb(144, 238, 17) 0%, rgb(122, 204, 15) 100%);">
+                        <div class="text-lg font-bold text-black">Por qué esto IMPORTA</div>
+                    </div>
+
+                    <div class="absolute left-[8%] top-[10%] rounded-xl shadow-lg p-4 w-44" style="background: rgb(26, 26, 26); border-left: 4px solid rgb(144, 238, 17);">
+                        <div class="flex items-center mb-2">
+                            <div class="w-8 h-8 rounded-full flex items-center justify-center mr-2" style="background: rgb(144, 238, 17);">
+                                <span class="text-black font-bold text-sm">🎨</span>
+                            </div>
+                            <h3 class="font-bold text-sm" style="color: rgb(144, 238, 17);">Valor Cultural</h3>
+                        </div>
+                        <p class="text-xs text-white leading-tight">Juegos son cultura, sin pricing regional generación perdida</p>
+                    </div>
+
+                    <div class="absolute right-[8%] top-[10%] rounded-xl shadow-lg p-4 w-44" style="background: rgb(26, 26, 26); border-left: 4px solid rgb(255, 68, 68);">
+                        <div class="flex items-center mb-2">
+                            <div class="w-8 h-8 rounded-full flex items-center justify-center mr-2" style="background: rgb(255, 68, 68);">
+                                <span class="text-white font-bold text-sm">👥</span>
+                            </div>
+                            <h3 class="font-bold text-sm" style="color: rgb(255, 68, 68);">Valor Social</h3>
+                        </div>
+                        <p class="text-xs text-white leading-tight">12M gamers LATAM marginados, comunidades e-sports</p>
+                    </div>
+
+                    <div class="absolute left-1/2 transform -translate-x-1/2 bottom-[15%] rounded-xl shadow-lg p-4 w-56" style="background: rgb(26, 26, 26); border-left: 4px solid rgb(144, 238, 17);">
+                        <div class="flex items-center mb-2">
+                            <div class="w-8 h-8 rounded-full flex items-center justify-center mr-2" style="background: rgb(144, 238, 17);">
+                                <span class="text-black font-bold text-sm">💰</span>
+                            </div>
+                            <h3 class="font-bold text-sm" style="color: rgb(144, 238, 17);">Valor Económico</h3>
+                        </div>
+                        <p class="text-xs text-white leading-tight">Team Cherry perdió $180K, CheckPoint devuelve tiempo</p>
+                    </div>
+                </main>
+            </div>
+
+            <!-- Slide 10: Global Market -->
+            <div class="slide slide-overview" data-slide-type="overview">
+                <header class="slide-header flex items-center justify-start">
+                    <h1 class="text-3xl font-bold text-white">De Argentina al mundo</h1>
+                </header>
+
+                <main class="slide-content">
+                    <div class="grid grid-cols-12 grid-rows-3 gap-4 h-full">
+                        <div class="col-span-7 row-span-2 rounded-2xl p-6 flex flex-col justify-center shadow-2xl" style="background-color: rgb(144, 238, 17);">
+                            <div class="text-6xl font-bold mb-4 text-black">$209B</div>
+                            <div class="text-2xl text-black mb-2">Total Gaming + Streaming Market</div>
+                            <div class="text-lg text-black opacity-80">Global opportunity landscape</div>
+                        </div>
+
+                        <div class="col-span-5 bg-gray-800 border-l-4 accent-green rounded-xl shadow-lg p-4 flex flex-col justify-center">
+                            <div class="text-3xl font-bold mb-2 text-white">Brasil</div>
+                            <div class="text-lg text-gray-300">25M gamers, 5X más grande</div>
+                        </div>
+
+                        <div class="col-span-3 bg-gray-700 border-l-4 accent-red rounded-xl p-4 flex flex-col justify-center">
+                            <div class="text-2xl font-bold mb-1 text-white">34%</div>
+                            <div class="text-sm text-gray-300">VPN usage globally</div>
+                        </div>
+
+                        <div class="col-span-2 secondary-color rounded-xl p-3 flex flex-col justify-center text-center">
+                            <div class="text-xl font-bold">$70B</div>
+                            <div class="text-xs mt-1">Vulnerable transactions</div>
+                        </div>
+
+                        <div class="col-span-3 bg-gray-800 border-l-4 accent-green rounded-xl p-4 flex flex-col justify-center">
+                            <div class="text-lg font-bold text-white mb-1">Argentina</div>
+                            <div class="text-sm text-gray-300">5M gamers caso estudio</div>
+                        </div>
+
+                        <div class="col-span-3 bg-gray-700 border-l-4 accent-red rounded-xl p-4 flex flex-col justify-center">
+                            <div class="text-lg font-bold text-white mb-1">Turkey</div>
+                            <div class="text-sm text-gray-300">15M gamers cerrado Steam</div>
+                        </div>
+
+                        <div class="col-span-3 bg-gray-800 border-l-4 accent-green rounded-xl p-4 flex flex-col justify-center">
+                            <div class="text-lg font-bold text-white mb-1">India</div>
+                            <div class="text-sm text-gray-300">VPN market $16.6B</div>
+                        </div>
+
+                        <div class="col-span-3 bg-gray-700 border-l-4 accent-red rounded-xl p-4 flex flex-col justify-center">
+                            <div class="text-lg font-bold text-white mb-1">25 países</div>
+                            <div class="text-sm text-gray-300">LATAM/MENA USD pricing</div>
+                        </div>
+                    </div>
+                </main>
+
+                <footer class="slide-footer flex items-center justify-between text-sm text-gray-400"></footer>
+            </div>
+
+            <!-- Slide 11: Everyone Wins -->
+            <div class="slide slide-comparison" data-slide-type="comparison">
+                <header class="slide-header">
+                    <h1 class="text-3xl font-black text-white">2023: Todos perdieron. 2025: Todos ganan</h1>
+                </header>
+
+                <main class="slide-content">
+                    <div class="flex gap-6 h-full">
+                        <div class="flex-[3] bg-gray-900 rounded-xl shadow-2xl p-6 border-l-8 border-red-500">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center text-white font-black text-xl mr-4">TC</div>
+                                <h3 class="text-2xl font-black mb-0 text-white">Team Cherry</h3>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="bg-red-900 bg-opacity-30 rounded-lg p-4 border-l-4 border-red-500">
+                                    <div class="text-red-300 font-bold text-sm mb-1">2023 PÉRDIDA</div>
+                                    <div class="text-red-100 text-lg">Perdió $180K por piratería</div>
+                                </div>
+                                <div class="flex items-center justify-center my-6">
+                                    <div class="w-16 h-1 bg-gray-600"></div>
+                                    <div class="mx-4 text-2xl">→</div>
+                                    <div class="w-16 h-1 brand-primary"></div>
+                                </div>
+                                <div class="bg-green-900 bg-opacity-40 rounded-lg p-4 border-l-4 border-green-400">
+                                    <div class="brand-primary font-bold text-sm mb-1">2025 CON CHECKPOINT</div>
+                                    <div class="text-green-100 text-lg font-bold">Recupera 50% revenue</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex-[1.5] bg-gray-800 rounded-lg p-4 border-t-4 border-green-400">
+                            <div class="flex items-center mb-3">
+                                <div class="w-8 h-8 brand-primary rounded-full flex items-center justify-center text-black font-black text-sm mr-3">M</div>
+                                <h4 class="font-black mb-0 text-white text-lg">Matías</h4>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="bg-red-900 bg-opacity-20 rounded p-3">
+                                    <div class="text-red-300 font-bold text-xs mb-1">2023</div>
+                                    <div class="text-red-200 text-sm">Piratería</div>
+                                </div>
+                                <div class="text-center text-lg">↓</div>
+                                <div class="bg-green-900 bg-opacity-30 rounded p-3">
+                                    <div class="brand-primary font-bold text-xs mb-1">2025</div>
+                                    <div class="text-green-200 text-sm font-bold">Compra $24 feliz</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex-1 space-y-3">
+                            <div class="bg-gray-700 rounded-lg p-3 border-t-4 border-green-400">
+                                <div class="flex items-center mb-2">
+                                    <div class="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-white font-black text-xs mr-2">S</div>
+                                    <div class="text-white font-black text-sm">Steam</div>
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="bg-red-900 bg-opacity-30 rounded p-2">
+                                        <div class="text-red-300 font-bold text-xs">2023</div>
+                                        <div class="text-red-200 text-xs">Cerró AR</div>
+                                    </div>
+                                    <div class="text-center">↓</div>
+                                    <div class="bg-green-900 bg-opacity-40 rounded p-2">
+                                        <div class="brand-primary font-bold text-xs">2025</div>
+                                        <div class="text-green-200 text-xs font-bold">Reabre mercados</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="primary-color rounded-lg p-3 text-center">
+                                <div class="text-black font-black text-sm">CheckPoint</div>
+                                <div class="text-black text-xs font-bold">Solución Win-Win</div>
+                            </div>
+
+                            <div class="bg-gray-700 rounded-lg p-3 text-center">
+                                <div class="text-white font-bold text-xs mb-1">RESULTADO</div>
+                                <div class="brand-primary text-sm font-black">Todos Ganan</div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+
+                <footer class="slide-footer"></footer>
+            </div>
+
+            <!-- Slide 12: Everyone Wins -->
+            <div class="slide slide-comparison" data-slide-type="business-model">
+                <header class="slide-header">
+                    <h1 class="text-3xl font-black text-white">Modelo de negocio</h1>
+                </header>
+
+                <main class="slide-content">
+                    <div class="flex gap-6 h-full">
+                        <img src="./business-model.png" />
+                    </div>
+                </main>
+
+                <footer class="slide-footer"></footer>
+            </div>
+
+            <!-- Slide 13: Everyone Wins -->
+            <div class="slide slide-comparison" data-slide-type="plans">
+                <header class="slide-header">
+                    <h1 class="text-3xl font-black text-white">Planes</h1>
+                </header>
+
+                <main class="slide-content">
+                    <div class="flex gap-6 h-full">
+                        <img src="./CheckPoint-plans.png" />
+                    </div>
+                </main>
+
+                <footer class="slide-footer"></footer>
+            </div>
+
+            <!-- Slide 14: References -->
+            <div class="slide slide-resources" data-slide-type="resources">
+                <header class="slide-header">
+                    <h1 class="text-3xl font-bold text-white">Referencias verificables</h1>
+                </header>
+
+                <main class="slide-content">
+                    <div class="grid grid-cols-3 grid-rows-2 gap-4 h-full">
+                        <div class="bg-gray-900 rounded-lg shadow-2xl p-4 border border-gray-700" style="background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);">
+                            <div class="h-16 bg-gradient-to-br rounded mb-3 flex items-center justify-center" style="background: linear-gradient(135deg, #90ee11 0%, #70cc00 100%);">
+                                <div class="w-8 h-8 bg-white rounded flex items-center justify-center">
+                                    <span class="text-black font-bold text-sm">📰</span>
+                                </div>
+                            </div>
+                            <h4 class="font-bold text-sm mb-2" style="color: #90ee11;">PC Gamer</h4>
+                            <p class="text-xs text-white">Nov 2023: Argentina Turkey price hikes 2900%</p>
+                        </div>
+
+                        <div class="bg-gray-900 rounded-lg shadow-2xl p-4 border border-gray-700" style="background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);">
+                            <div class="h-16 bg-gradient-to-br rounded mb-3 flex items-center justify-center" style="background: linear-gradient(135deg, #ff4444 0%, #cc3333 100%);">
+                                <div class="w-8 h-8 bg-white rounded flex items-center justify-center">
+                                    <span class="text-black font-bold text-sm">📺</span>
+                                </div>
+                            </div>
+                            <h4 class="font-bold text-sm mb-2" style="color: #ff4444;">VICE</h4>
+                            <p class="text-xs text-white">Jul 2024: Steam games mysterious Argentina spikes</p>
+                        </div>
+
+                        <div class="bg-gray-900 rounded-lg shadow-2xl p-4 border border-gray-700" style="background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);">
+                            <div class="h-16 bg-gradient-to-br rounded mb-3 flex items-center justify-center" style="background: linear-gradient(135deg, #90ee11 0%, #70cc00 100%);">
+                                <div class="w-8 h-8 bg-white rounded flex items-center justify-center">
+                                    <span class="text-black font-bold text-sm">🎮</span>
+                                </div>
+                            </div>
+                            <h4 class="font-bold text-sm mb-2" style="color: #90ee11;">GameDiscoverCo</h4>
+                            <p class="text-xs text-white">Jun 2021: Don't buy Steam games Argentina</p>
+                        </div>
+
+                        <div class="bg-gray-900 rounded-lg shadow-2xl p-4 border border-gray-700" style="background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);">
+                            <div class="h-16 bg-gradient-to-br rounded mb-3 flex items-center justify-center" style="background: linear-gradient(135deg, #ff4444 0%, #cc3333 100%);">
+                                <div class="w-8 h-8 bg-white rounded flex items-center justify-center">
+                                    <span class="text-black font-bold text-sm">🤖</span>
+                                </div>
+                            </div>
+                            <h4 class="font-bold text-sm mb-2" style="color: #ff4444;">AUTOMATON WEST</h4>
+                            <p class="text-xs text-white">Jul 2022: 30% fraudulent sales Argentina</p>
+                        </div>
+
+                        <div class="bg-gray-900 rounded-lg shadow-2xl p-4 border border-gray-700" style="background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);">
+                            <div class="h-16 bg-gradient-to-br rounded mb-3 flex items-center justify-center" style="background: linear-gradient(135deg, #90ee11 0%, #70cc00 100%);">
+                                <div class="w-8 h-8 bg-white rounded flex items-center justify-center">
+                                    <span class="text-black font-bold text-sm">🛡️</span>
+                                </div>
+                            </div>
+                            <h4 class="font-bold text-sm mb-2" style="color: #90ee11;">IPinfo.io</h4>
+                            <p class="text-xs text-white">2023: Preventing localized pricing abuse</p>
+                        </div>
+                    </div>
+                </main>
+
+                <footer class="slide-footer"></footer>
+            </div>
+        </div>
+    </div>
+
+    <div class="carousel-controls">
+        <button class="nav-btn" id="prev-btn" disabled>← Previous</button>
+
+        <div class="slide-indicators" id="indicators">
+            <!-- Indicators will be generated by JavaScript -->
+        </div>
+
+        <button class="nav-btn" id="next-btn">Next →</button>
+    </div>
+
+    <script>
+        class Carousel {
+            constructor() {
+                this.slidesWrapper = document.getElementById('slides-wrapper');
+                this.slides = document.querySelectorAll('.slide');
+                this.currentSlide = 0;
+                this.totalSlides = this.slides.length;
+
+                // Update counter
+                document.getElementById('total-slides').textContent = this.totalSlides;
+
+                this.init();
+            }
+
+            init() {
+                this.createIndicators();
+                this.updateUI();
+                this.bindEvents();
+                this.showSlide(0);
+            }
+
+            createIndicators() {
+                const indicatorsContainer = document.getElementById('indicators');
+                for (let i = 0; i < this.totalSlides; i++) {
+                    const indicator = document.createElement('div');
+                    indicator.className = 'indicator';
+                    indicator.addEventListener('click', () => this.goToSlide(i));
+                    indicatorsContainer.appendChild(indicator);
+                }
+            }
+
+            bindEvents() {
+                document.getElementById('prev-btn').addEventListener('click', () => this.prevSlide());
+                document.getElementById('next-btn').addEventListener('click', () => this.nextSlide());
+
+                // Keyboard navigation
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowLeft') this.prevSlide();
+                    if (e.key === 'ArrowRight') this.nextSlide();
+                });
+            }
+
+            showSlide(index) {
+                this.slidesWrapper.style.transform = `translateX(-${index * 100}%)`;
+                this.currentSlide = index;
+                this.updateUI();
+            }
+
+            nextSlide() {
+                if (this.currentSlide < this.totalSlides - 1) {
+                    this.showSlide(this.currentSlide + 1);
+                }
+            }
+
+            prevSlide() {
+                if (this.currentSlide > 0) {
+                    this.showSlide(this.currentSlide - 1);
+                }
+            }
+
+            goToSlide(index) {
+                this.showSlide(index);
+            }
+
+            updateUI() {
+                // Update slide counter
+                document.getElementById('current-slide').textContent = this.currentSlide + 1;
+
+                // Update button states
+                const prevBtn = document.getElementById('prev-btn');
+                const nextBtn = document.getElementById('next-btn');
+
+                prevBtn.disabled = this.currentSlide === 0;
+                nextBtn.disabled = this.currentSlide === this.totalSlides - 1;
+
+                // Update indicators
+                const indicators = document.querySelectorAll('.indicator');
+                indicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('active', index === this.currentSlide);
+                });
+            }
+        }
+
+        // Initialize carousel when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            new Carousel();
+        });
+    </script>
+</body>
+</html>
