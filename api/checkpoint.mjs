@@ -18,7 +18,7 @@ async function callApi_default(route, body, accessToken) {
 				error: "UNKNOWN_NUMBER",
 				status: 404
 			};
-			throw new Error(`API ${route} devolvió ${response.status}`);
+			console.error(`API ${route} devolvió ${response.status}`);
 		}
 		return await response.json();
 	} catch (error) {
@@ -72,7 +72,7 @@ async function handler(request, response) {
 				maxAge: 1
 			}, accessToken),
 			callApi_default("/number-verification/v0/verify", { phoneNumber: numeroTelefono }, accessToken),
-			callApi_default("/device-status/v0/roaming", { phoneNumber: numeroTelefono }, accessToken)
+			callApi_default("/device-status/v0/roaming", { device: { phoneNumber: numeroTelefono } }, accessToken)
 		]);
 		console.log({
 			simSwapResult,

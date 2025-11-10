@@ -51,7 +51,7 @@ export default async function handler(
         callApi(
           "/device-status/v0/roaming",
           {
-            phoneNumber: numeroTelefono,
+            device: { phoneNumber: numeroTelefono },
           },
           accessToken,
         ),

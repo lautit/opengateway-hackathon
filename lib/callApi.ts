@@ -1,5 +1,6 @@
 export type Body = {
-  phoneNumber: number | string;
+  device?: object;
+  phoneNumber?: number | string;
   maxAge?: number;
 };
 
@@ -29,7 +30,7 @@ export default async function (route: string, body: Body, accessToken: string) {
         return { error: "UNKNOWN_NUMBER", status: 404 };
       }
 
-      throw new Error(`API ${route} devolvió ${response.status}`);
+      console.error(`API ${route} devolvió ${response.status}`);
     }
 
     return await response.json();
