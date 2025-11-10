@@ -63,10 +63,10 @@ export default async function handler(
 
     // Regla 1: SIM Swap
     if (simSwapResult.swapped !== true) {
-      // Si el número no existe, no podemos confiar
       if (!!simSwapResult.error || simSwapResult.error !== "UNKNOWN_NUMBER") {
-        score += 10; // Penalidad baja
+        score += 15; // Penalidad baja
       } else {
+        // Si el número no existe, no podemos confiar
         reasons.push("Riesgo: SIM desconocida.");
       }
     } else {
@@ -74,18 +74,18 @@ export default async function handler(
       reasons.push("Fraude detectado: SIM Swap reciente.");
     }
 
-    // Regla 2: Number Verification
+    // Regla 2: Roaming
+    if (deviceStatusResult.roaming !== true) {
+      score += 25; // Penalidad media
+    } else {
+      reasons.push("Riesgo: Dispositivo en roaming.");
+    }
+
+    // Regla 3: Number Verification
     if (numVerifyResult["devicePhone NumberVerified"] !== false) {
       score += 60; // Penalidad alta
     } else {
       reasons.push("Riesgo: El número no coincide con el dispositivo.");
-    }
-
-    // Regla 3: Roaming
-    if (deviceStatusResult.roaming !== true) {
-      score += 20; // Penalidad media
-    } else {
-      reasons.push("Riesgo: Dispositivo en roaming.");
     }
 
     // 5. Decisión Final (Paso 4)

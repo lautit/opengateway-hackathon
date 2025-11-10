@@ -96,13 +96,13 @@ async function handler(request, response) {
 		]);
 		let score = 0;
 		let reasons = [];
-		if (simSwapResult.swapped !== true) if (!!simSwapResult.error || simSwapResult.error !== "UNKNOWN_NUMBER") score += 10;
+		if (simSwapResult.swapped !== true) if (!!simSwapResult.error || simSwapResult.error !== "UNKNOWN_NUMBER") score += 15;
 		else reasons.push("Riesgo: SIM desconocida.");
 		else reasons.push("Fraude detectado: SIM Swap reciente.");
+		if (deviceStatusResult.roaming !== true) score += 25;
+		else reasons.push("Riesgo: Dispositivo en roaming.");
 		if (numVerifyResult["devicePhone NumberVerified"] !== false) score += 60;
 		else reasons.push("Riesgo: El número no coincide con el dispositivo.");
-		if (deviceStatusResult.roaming !== true) score += 20;
-		else reasons.push("Riesgo: Dispositivo en roaming.");
 		let decision, message, type;
 		if (score <= 10) {
 			decision = "BLOQUEADO";
