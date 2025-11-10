@@ -78,14 +78,14 @@ async function getAccessToken_default() {
 
 //#endregion
 //#region endpoints/api/checkpoint.ts
-async function handler(request) {
+async function handler(request, response) {
 	const call = process.env.OPENXPAND_MOCKED_API ? mockedCallApi_default : callApi_default;
 	try {
 		const { numeroTelefono } = request.body;
-		if (!numeroTelefono) return new Response("Falta numeroTelefono", { status: 400 });
+		if (!numeroTelefono) return response.status(400).json({ message: "Falta numeroTelefono" });
 		console.log(`[Orquestador] Iniciando chequeo para: ${numeroTelefono}`);
 		const accessToken = await getAccessToken_default();
-		if (!accessToken) return new Response("No se pudo obtener el Access Token.", { status: 500 });
+		if (!accessToken) return response.status(400).json({ message: "No se pudo obtener el Access Token." });
 		const [simSwapResult, numVerifyResult, deviceStatusResult] = await Promise.all([
 			call("/sim-swap/v0/check", {
 				phoneNumber: numeroTelefono,
@@ -118,19 +118,19 @@ async function handler(request) {
 			type = "success";
 		}
 		console.log(`[Orquestador] Decisión: ${decision} (Score: ${score})`);
-		return new Response(JSON.stringify({
+		return response.status(400).json({
 			decision,
 			score,
 			message,
 			type
-		}), { status: 200 });
+		});
 	} catch (error) {
 		console.error("Error fatal en el handler:", error?.message);
-		return new Response(JSON.stringify({
+		return response.status(400).json({
 			decision: "ERROR",
 			type: "danger",
 			message: "Error interno del servidor. Revisa los logs de Vercel."
-		}), { status: 500 });
+		});
 	}
 }
 

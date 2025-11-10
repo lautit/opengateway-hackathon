@@ -1,10 +1,11 @@
-import {VercelRequest} from "@vercel/node";
+import { VercelRequest, VercelResponse } from "@vercel/node";
 import callApi from "&/callApi.ts";
 import mockedCallApi from "&/mockedCallApi.ts";
 import getAccessToken from "&/getAccessToken.ts";
 
 export default async function handler(
   request: VercelRequest,
+  response: VercelResponse,
 ): Promise<Response | unknown> {
   const call = process.env.OPENXPAND_MOCKED_API ? mockedCallApi : callApi;
 
@@ -13,7 +14,7 @@ export default async function handler(
     const { numeroTelefono } = request.body;
 
     if (!numeroTelefono) {
-      return new Response("Falta numeroTelefono", { status: 400 });
+      return response.status(400).json({ message: "Falta numeroTelefono"});
     }
 
     console.log(`[Orquestador] Iniciando chequeo para: ${numeroTelefono}`);
@@ -21,7 +22,7 @@ export default async function handler(
     // 2. Obtener el Access Token (Paso 1)
     const accessToken = await getAccessToken();
     if (!accessToken) {
-      return new Response("No se pudo obtener el Access Token.", { status: 500 });
+      return response.status(400).json({ message: "No se pudo obtener el Access Token." });
     }
 
     // 3. Llamar a las 3 APIs en paralelo (Paso 2)
@@ -106,13 +107,13 @@ export default async function handler(
     console.log(`[Orquestador] Decisión: ${decision} (Score: ${score})`);
 
     // 6. Devolver respuesta al frontend
-    return new Response(JSON.stringify({ decision, score, message, type }), { status: 200 });
+    return response.status(400).json({ decision, score, message, type });
   } catch (error) {
     console.error("Error fatal en el handler:", (error as Error)?.message);
-    return new Response(JSON.stringify({
+    return response.status(400).json({
       decision: "ERROR",
       type: "danger",
       message: "Error interno del servidor. Revisa los logs de Vercel.",
-    }), { status: 500 });
+    });
   }
 }
