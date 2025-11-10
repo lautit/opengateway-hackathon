@@ -19,7 +19,6 @@ echo '{
 echo '[
   {
     "src": "^/api/checkpoint$",
-    "methods": ["POST"],
     "dest": "functions/api.func"
   }
 ]' > "${OUTPUT_DIR}/routes.json"
